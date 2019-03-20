@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lab2</string>
+    <string name="app_name">Lab3</string>
     <string name="hello_message">this is just a test</string>
     <string name="ButtonText">i am a button</string>
     <string name="textView1">here are my widghets:</string>
@@ -7,5 +7,6 @@
     <string name="checkbox1">Check this out</string>
     <string name="Switch1">Switch on / off</string>
     <string name="textview2"> please type here</string>
+    <string name="enterEmailAd"> Enter your email address: </string>
 
 </resources>
