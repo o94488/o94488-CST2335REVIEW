@@ -8,5 +8,14 @@
     <string name="Switch1">Switch on / off</string>
     <string name="textview2"> please type here</string>
     <string name="enterEmailAd"> Enter your email address: </string>
+    <string name="emailHint"> Type email here </string>
+    <string name="enterPwd"> Type your password: </string>
+    <string name="yourProfile">Your profile</string>
+    <string name="yourName">Your name: </string>
+    <string name="enterYourName">Enter your name</string>
+    <string name="yourEmail">Your email: </string>
+    <string name="enterYourEmail">Enter your email</string>
+    <string name="yourPicture">Your picture: </string>
+    <string name="clickButton">Click the button above to take a picture: </string>
 
 </resources>
