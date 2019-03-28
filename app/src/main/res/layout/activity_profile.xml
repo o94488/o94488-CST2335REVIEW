@@ -12,29 +12,28 @@
         android:text="@string/yourProfile"/>
 
     <TextView
-        android:id="@+id/YourName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/yourName" />
 
     <EditText
+        android:id="@+id/enterYourName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/enterYourName"/>
 
     <TextView
-        android:id="@+id/yourEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/yourName" />
+        android:text="@string/enterYourEmail" />
 
     <EditText
+        android:id="@+id/yourEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/yourEmail"/>
 
     <TextView
-        android:id="@+id/yourPicture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/yourPicture"/>

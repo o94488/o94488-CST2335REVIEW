@@ -1,52 +1,68 @@
 package com.example.myapplication;
 
-import android.content.Intent;
-import android.provider.ContactsContract;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
+import android.widget.EditText;
+import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity {
+
+    protected final static String ACTIVITY_NAME = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_login);
 
-        Button nextPageButton = (Button)findViewById(R.id.nextPageButton);
+        Button nextButton = (Button) findViewById(R.id.nextPageButton);
 
-        nextPageButton.setOnClickListener( a -> {
+        SharedPreferences sharedPref = getSharedPreferences("LoginFile", Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPref.edit();
+        EditText loginName = (EditText) findViewById(R.id.email);
+
+
+        loginName.setHint(sharedPref.getString("DefaultEmail", ""));
+
+        nextButton.setOnClickListener(b -> {
+            //Give directions to go from this page, to SecondActivity
             Intent nextPage = new Intent(MainActivity.this, ProfileActivity.class);
-            startActivityForResult(nextPage, 123);
+            nextPage.putExtra("savedEmail", loginName.getText().toString());
+            //Now make the transition:
+            startActivity(nextPage);
         });
 
+        Log.e(ACTIVITY_NAME, "In onCreate()");
     }
 
+    protected void onResume(){
+        super.onResume();
+        Log.e(ACTIVITY_NAME, "In onResume()");
 
+    }
 
     @Override
     protected void onPause() {
         super.onPause();
+        SharedPreferences sharedPref = getSharedPreferences("LoginFile", Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit =  sharedPref.edit();
+        EditText loginName = (EditText) findViewById(R.id.email);
+        edit.putString("DefaultEmail",loginName.getText().toString());
+        edit.commit();
+
+        Log.e(ACTIVITY_NAME, "In onPause()");
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onStop() {
+    protected void onStop(){
         super.onStop();
+        Log.e(ACTIVITY_NAME, "In onStop()");
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onDestroy(){
+        super.onDestroy();
+        Log.e(ACTIVITY_NAME, "In onDestroy()");
     }
 
 }
