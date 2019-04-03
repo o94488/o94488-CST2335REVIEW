@@ -30,8 +30,7 @@
     <EditText
         android:id="@+id/yourEmail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/yourEmail"/>
+        android:layout_height="wrap_content" />
 
     <TextView
         android:layout_width="match_parent"

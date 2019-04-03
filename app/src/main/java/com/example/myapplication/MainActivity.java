@@ -22,14 +22,14 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPref = getSharedPreferences("LoginFile", Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPref.edit();
-        EditText loginName = (EditText) findViewById(R.id.email);
-
-
-        loginName.setHint(sharedPref.getString("DefaultEmail", ""));
+        EditText loginName = findViewById(R.id.email);
+        //loginName.setHint(sharedPref.getString("savedEmail", ""));
+        loginName.setText(sharedPref.getString("savedEmail",""));
 
         nextButton.setOnClickListener(b -> {
             //Give directions to go from this page, to SecondActivity
             Intent nextPage = new Intent(MainActivity.this, ProfileActivity.class);
+
             nextPage.putExtra("savedEmail", loginName.getText().toString());
             //Now make the transition:
             startActivity(nextPage);
@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         SharedPreferences sharedPref = getSharedPreferences("LoginFile", Context.MODE_PRIVATE);
         SharedPreferences.Editor edit =  sharedPref.edit();
-        EditText loginName = (EditText) findViewById(R.id.email);
-        edit.putString("DefaultEmail",loginName.getText().toString());
+        EditText loginName = findViewById(R.id.email);
+        edit.putString("savedEmail",loginName.getText().toString());
         edit.commit();
 
         Log.e(ACTIVITY_NAME, "In onPause()");

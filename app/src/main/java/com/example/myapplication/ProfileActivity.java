@@ -28,8 +28,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         EditText enterText = (EditText) findViewById(R.id.yourEmail);
         enterText.setText(savedEmail);
-
-
+        
         mImageButton = (ImageButton) findViewById(R.id.imageButton);
 
         mImageButton.setOnClickListener(c ->  {
