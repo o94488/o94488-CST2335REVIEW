@@ -9,9 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.content.Intent;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
-    protected final static String ACTIVITY_NAME = "MainActivity";
+    protected final static String ACTIVITY_NAME = "LoginActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         nextButton.setOnClickListener(b -> {
             //Give directions to go from this page, to SecondActivity
-            Intent nextPage = new Intent(MainActivity.this, ProfileActivity.class);
+            Intent nextPage = new Intent(LoginActivity.this, ProfileActivity.class);
 
             nextPage.putExtra("savedEmail", loginName.getText().toString());
             //Now make the transition:

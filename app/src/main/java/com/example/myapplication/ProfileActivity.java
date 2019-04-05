@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.graphics.Bitmap;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ public class ProfileActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ImageButton mImageButton;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +30,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         EditText enterText = (EditText) findViewById(R.id.yourEmail);
         enterText.setText(savedEmail);
-        
+
         mImageButton = (ImageButton) findViewById(R.id.imageButton);
 
         mImageButton.setOnClickListener(c ->  {
@@ -39,6 +41,14 @@ public class ProfileActivity extends AppCompatActivity {
                 }
 
         });
+
+        Button chatButton = findViewById(R.id.GotoChat);
+        chatButton.setOnClickListener(d -> {
+            Intent nextPage = new Intent(ProfileActivity.this, ChatRoomActivity.class);
+            startActivity(nextPage);
+
+        });
+
         Log.e(ACTIVITY_NAME, "In onCreate()");
     }
 

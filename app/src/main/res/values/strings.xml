@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lab3</string>
+    <string name="app_name">Lab4</string>
     <string name="hello_message">this is just a test</string>
     <string name="ButtonText">i am a button</string>
     <string name="textView1">here are my widghets:</string>
@@ -17,5 +17,8 @@
     <string name="enterYourEmail">Enter your email</string>
     <string name="yourPicture">Your picture: </string>
     <string name="clickButton">Click the button above to take a picture: </string>
-
+    <string name="GotoChat">GoToChat</string>
+    <string name="sendButton">Send</string>
+    <string name="receiveButton">Receive</string>
+    <string name="textInput">please input test here</string>
 </resources>
