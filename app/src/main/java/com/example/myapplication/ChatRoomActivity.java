@@ -2,6 +2,8 @@ package com.example.myapplication;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -27,13 +29,49 @@ public class ChatRoomActivity extends AppCompatActivity {
     protected static final String ACTIVITY_NAME = "ChatRoomActivity";
     protected static final int SEND_MESSAGE = 1;
     protected static final int RECEIVE_MESSAGE = 2;
-
     ChatAdapter messageAdapter;
+
+    /**
+     * SQLite database*/
+
+    protected static ChatDatabase chatData;
+    protected SQLiteDatabase db;
+    Cursor results;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_chatroom);
+
+        /**
+         * database
+         * */
+
+        chatData = new ChatDatabase(this);
+        db = chatData.getWritableDatabase();
+
+        results = db.query(false, chatData.TABLE_NAME,
+                new String[] {chatData.KEY_ID, chatData.KEY_MESSAGE, chatData.KEY_TYPE},
+                chatData.KEY_ID +" not null",
+                null, null, null, null, null, null);
+        //int rows = results.getCount();
+        results.moveToFirst();
+
+        while(! results.isAfterLast()){
+            // get message from database and add message to chatMessage
+            chatMessage.add(new Message(
+                    results.getString(results.getColumnIndex(ChatDatabase.KEY_MESSAGE)),
+                    results.getInt(results.getColumnIndex(ChatDatabase.KEY_TYPE)),
+                    results.getLong(results.getColumnIndex(ChatDatabase.KEY_ID))
+            ));
+            //Log.i(ACTIVITY_NAME, "SQL MESSAGE:" + results.getString( results.getColumnIndex( ChatDatabase.KEY_MESSAGE)));
+            results.moveToNext();
+        }
+
+
+        /**
+         send button
+         */
 
         ListView listView = findViewById(R.id.listView);
         chatEditText = findViewById(R.id.inputText);
@@ -50,12 +88,21 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             ContentValues newValues = new ContentValues();
 
-            chatEditText.setText(" ");
+            newValues.put(chatData.KEY_MESSAGE, chatEditText.getText().toString());
+            newValues.put(chatData.KEY_TYPE, ChatRoomActivity.SEND_MESSAGE);
+            db.insert(chatData.TABLE_NAME, "", newValues );
+            chatEditText.setText("");
+
+//            results = db.query(false, chatData.TABLE_NAME,
+//                    new String[] { chatData.KEY_ID, chatData.KEY_MESSAGE, chatData.KEY_TYPE },
+//                    null, null, null, null, null, null);
+
+            chatEditText.setText("");
             });
 
-
-
-
+        /**
+         * receiveButton
+         * */
 
         Button buttonReceive = findViewById(R.id.receiveButton);
 
@@ -65,9 +112,22 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             ContentValues newValues = new ContentValues();
 
+            newValues.put(chatData.KEY_MESSAGE, chatEditText.getText().toString());
+            newValues.put(chatData.KEY_TYPE, ChatRoomActivity.RECEIVE_MESSAGE);
+            db.insert(chatData.TABLE_NAME, "", newValues );
+            chatEditText.setText("");
+
+//            results = db.query(false, chatData.TABLE_NAME,
+//                    new String[] { chatData.KEY_ID, chatData.KEY_MESSAGE, chatData.KEY_TYPE },
+//                    null, null, null, null, null, null);
+
+
             chatEditText.setText(" ");
         });
 
+        /**
+         * Toast
+         * */
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
