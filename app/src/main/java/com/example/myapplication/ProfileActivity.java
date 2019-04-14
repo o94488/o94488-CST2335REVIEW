@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,7 @@ public class ProfileActivity extends AppCompatActivity {
     ImageButton mImageButton;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +37,10 @@ public class ProfileActivity extends AppCompatActivity {
 
         mImageButton.setOnClickListener(c ->  {
 
-                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-                }
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            }
 
         });
 
@@ -48,6 +50,13 @@ public class ProfileActivity extends AppCompatActivity {
             startActivity(nextPage);
 
         });
+
+        Button gotoToolBarButton = findViewById(R.id.GotoToolBarButton);
+        gotoToolBarButton.setOnClickListener(gotoToolBar -> {
+            Intent nextPage = new Intent(ProfileActivity.this, TestToolbar.class);
+            startActivity(nextPage);
+        });
+
 
         Log.e(ACTIVITY_NAME, "In onCreate()");
     }

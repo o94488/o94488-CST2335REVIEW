@@ -21,4 +21,10 @@
     <string name="sendButton">Send</string>
     <string name="receiveButton">Receive</string>
     <string name="textInput">please input test here</string>
+    <string name="GoToToobarButton">ToolBar</string>
+    <string name="menuName1">menu1</string>
+    <string name="menuName2">menu2</string>
+    <string name="menuName3">menu3</string>
+    <string name="menuName4">menu4</string>
+    <string name="search">search something</string>
 </resources>
